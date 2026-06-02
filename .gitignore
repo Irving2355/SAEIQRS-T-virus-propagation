@@ -1,0 +1,34 @@
+# Visual Studio / C#
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.pdb
+*.exe
+*.dll
+*.deps.json
+*.runtimeconfig.json
+
+# Avalonia / build artifacts
+publish/
+Debug/
+Release/
+
+# MATLAB
+*.asv
+*.m~
+slprj/
+codegen/
+*.mex*
+*.fig
+
+# Temporary files
+*.log
+tmp/
+temp/
+
+# OS files
+.DS_Store
+Thumbs.db

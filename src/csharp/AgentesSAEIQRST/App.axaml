@@ -1,0 +1,14 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:fluent="clr-namespace:Avalonia.Themes.Fluent;assembly=Avalonia.Themes.Fluent"
+             xmlns:conv="clr-namespace:AgentesSAEIQRST.Converters"
+             x:Class="AgentesSAEIQRST.App">
+
+  <Application.Styles>
+    <fluent:FluentTheme />
+  </Application.Styles>
+
+  <Application.Resources>
+    <conv:BoolToRunStopText x:Key="BoolToRunStopText"/>
+  </Application.Resources>
+</Application>

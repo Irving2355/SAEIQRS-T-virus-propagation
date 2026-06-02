@@ -1,0 +1,132 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="AgentesSAEIQRST.Views.MainWindow"
+        Width="1200" Height="800" Title="SAEIQRS-T — Simulación" WindowState="Maximized">
+  <Grid ColumnDefinitions="360,*">
+    <!-- Panel de control -->
+    <ScrollViewer Grid.Column="0" Padding="12">
+      <StackPanel Spacing="8">
+        <TextBlock Text="Topología" FontWeight="Bold"/>
+        <ComboBox x:Name="TopologiaSelector" SelectedIndex="2">
+          <ComboBoxItem Content="Bus"/>
+          <ComboBoxItem Content="Star"/>
+          <ComboBoxItem Content="Ring"/>
+          <ComboBoxItem Content="Mesh"/>
+          <ComboBoxItem Content="Tree"/>
+          <ComboBoxItem Content="CustomCsv"/>
+        </ComboBox>
+
+        <Separator/>
+
+        <TextBlock Text="Dimensiones Canvas" FontWeight="Bold"/>
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <TextBlock Text="W:" VerticalAlignment="Center"/>
+          <TextBox x:Name="TxtWidth" Width="80" Text="900"/>
+          <TextBlock Text="H:" VerticalAlignment="Center" Margin="8,0,0,0"/>
+          <TextBox x:Name="TxtHeight" Width="80" Text="800"/>
+          <TextBlock Text="Margin:" VerticalAlignment="Center" Margin="8,0,0,0"/>
+          <TextBox x:Name="TxtMargin" Width="60" Text="20"/>
+        </StackPanel>
+
+        <Separator/>
+
+        <TextBlock Text="Conteos iniciales" FontWeight="Bold" Margin="0,6,0,2"/>
+        <StackPanel>
+          <Grid ColumnDefinitions="auto,*,auto,*" RowDefinitions="auto,auto,auto,auto">
+            <TextBlock Text="T" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtCountT" Grid.Row="0" Grid.Column="1" Width="60" Text="333"/>
+
+            <TextBlock Text="S" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtCountS" Grid.Row="0" Grid.Column="3" Width="60" Text="9100"/>
+
+            <TextBlock Text="A" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtCountA" Grid.Row="1" Grid.Column="1" Width="60" Text="100"/>
+
+            <TextBlock Text="E" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtCountE" Grid.Row="1" Grid.Column="3" Width="60" Text="250"/>
+
+            <TextBlock Text="I" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtCountI" Grid.Row="2" Grid.Column="1" Width="60" Text="350"/>
+
+            <TextBlock Text="Q" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtCountQ" Grid.Row="2" Grid.Column="3" Width="60" Text="150"/>
+
+            <TextBlock Text="R" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="TxtCountR" Grid.Row="3" Grid.Column="1" Width="60" Text="50"/>
+          </Grid>
+        </StackPanel>
+
+
+        <Separator/>
+
+        <TextBlock Text="Parámetros de Topología" FontWeight="Bold"/>
+        <StackPanel Spacing="6">
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBlock Text="Ring Radius"/><TextBox x:Name="TxtRingRadius" Width="80" Text="260"/>
+          </StackPanel>
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBlock Text="Tree Branching"/><TextBox x:Name="TxtTreeBranching" Width="80" Text="3"/>
+          </StackPanel>
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBlock Text="Bus Y (0-1)"/><TextBox x:Name="TxtBusY" Width="80" Text="0.5"/>
+          </StackPanel>
+        </StackPanel>
+
+        <Separator/>
+
+        <TextBlock Text="CSV (solo CustomCsv)" FontWeight="Bold"/>
+        <StackPanel Spacing="6">
+          <StackPanel Orientation="Horizontal" Spacing="6">
+            <TextBlock Text="nodos.csv (T)"/>
+            <TextBox x:Name="TxtCsvNodos" Width="220" Text="Assets/MatLab/nodos.csv"/>
+          </StackPanel>
+          <StackPanel Orientation="Horizontal" Spacing="6">
+            <TextBlock Text="conexiones.csv (T-T)"/>
+            <TextBox x:Name="TxtCsvConexiones" Width="220" Text="Assets/MatLab/conexiones.csv"/>
+          </StackPanel>
+        </StackPanel>
+
+        <Separator/>
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <TextBlock Text="Δt:" VerticalAlignment="Center"/>
+          <TextBox x:Name="TxtDt" Width="80" Text="1.0"/>
+        </StackPanel>
+
+        <Separator/>
+
+        <Separator/>
+
+        <!-- Toggle para decidir si se usa GWO -->
+        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+          <TextBlock Text="Usar GWO (optimizar nodos T)" VerticalAlignment="Center"/>
+          <ToggleSwitch x:Name="ToggleUseGwo" IsChecked="False" />
+        </StackPanel>
+
+        <!-- Resumen de lo que hizo el GWO -->
+        <TextBlock x:Name="TxtGwoSummary"
+                  Margin="0,4,0,0"
+                  FontSize="11"
+                  TextWrapping="Wrap"
+                  Text="GWO desactivado." />
+
+        <Separator/>
+
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <Button Content="Initialize" Click="BtnIniciar_Click"/>
+          <Button Content="Step" Click="BtnStep_Click"/>
+          <Button Content="Run/Stop" Click="BtnRunStop_Click"/>
+        </StackPanel>
+
+        <TextBlock x:Name="TxtEstado"
+                  Margin="0,4,0,0"
+                  FontSize="11"
+                  TextWrapping="Wrap"
+                  Text="Estado..." />
+      </StackPanel>
+
+    </ScrollViewer>
+
+    <!-- Canvas donde pones los Icons -->
+    <Canvas x:Name="SimulationCanvas" Grid.Column="1" Background="White"/>
+  </Grid>
+</Window>
